@@ -1,14 +1,10 @@
-**TIL > Algorithm**
-
-<br>
-
 ## Algorithm
 
 > 학습자: **박상현**
 
 <br>
 
-이곳은 "Algorithm Repository"입니다. 알고리즘 이론 정리와 문제 풀이한 것들을 모아두는 곳입니다.
+이곳은 "Algorithm Directory"입니다. 알고리즘 이론 정리와 문제 풀이한 것들을 모아두는 곳입니다.
 
 <br>
 
@@ -16,7 +12,7 @@
 
 #### 001. Directories
 
-> 크게 알고리즘 이론(개념)을 정리해 놓은 directory와 문제 풀이 내역을 모아 놓은 directory로 구성되어 있습니다. 문제 풀이 내역 directory는 문제 출처별로 정리하였습니다.
+> 크게 알고리즘 이론(개념)을 정리해 놓은 directory와 문제 풀이 내역을 모아 놓은 directory로 구성되어 있습니다. 문제 풀이 내역 directory는 문제 출처별로 구조를 잡았습니다.
 
 <br>
 
