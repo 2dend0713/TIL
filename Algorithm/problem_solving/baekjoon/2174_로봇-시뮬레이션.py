@@ -1,65 +1,47 @@
 import sys
-from pprint import pprint
+from collections import defaultdict
 
 
-def check_dire(dire):
-    if dire == 'N':
-        return 0
-    elif dire == 'E':
-        return 1
-    elif dire == 'S':
-        return 2
-    elif dire == 'W':
-        return 3
-
-
-def perform_order(idx, order, rep):
-    print(idx, order, rep)
-    idx, rep = int(idx), int(rep)
-    r, c, dire = robots[idx]
-    print(r, c, dire)
+def perform_order(robot_idx, order, rep):
+    robot_idx, rep = int(robot_idx), int(rep)
 
     if order == 'L':
-        for _ in range(rep):
-            dire = (dire + 3) % 4
+        for _ in range(rep%4):
+            robots[robot_idx][2] = (robots[robot_idx][2] + 3) % 4
     elif order == 'R':
-        for _ in range(rep):
-            dire  = (dire + 1) % 4
+        for _ in range(rep%4):
+            robots[robot_idx][2] = (robots[robot_idx][2] + 1) % 4
     elif order == 'F':
         for _ in range(rep):
-            if dire == 0:
-                nr, nc = r - 1, c
-            elif dire == 1:
-                nr, nc = r, c + 1
-            elif dire == 2:
-                nr, nc = r + 1, c
-            elif dire == 3:
-                nr, nc = r, c - 1
+            nx, ny = robots[robot_idx][0] + dx[robots[robot_idx][2]], robots[robot_idx][1] + dy[robots[robot_idx][2]]
 
-            pprint(field)
-            if not (0 <= nr <= b and 0 <= nc <= a):
-                return f'Robot {idx} crashes into the wall'
-            elif field[nr][nc]:
-                return f'Robot {idx} crashes into robot {field[nr][nc]}'
-            field[nr][nc] = field[r][c]
-            field[r][c] = 0
+            if not (0 <= nx < a and 0 <= ny < b):
+                return f'Robot {robot_idx} crashes into the wall'
+            elif field[ny][nx]:
+                return f'Robot {robot_idx} crashes into robot {field[ny][nx]}'
+            else:
+                field[robots[robot_idx][1]][robots[robot_idx][0]], field[ny][nx] = 0, robot_idx
+                robots[robot_idx][0], robots[robot_idx][1] = nx, ny
 
 
 a, b = map(int, sys.stdin.readline().split())
 n, m = map(int, sys.stdin.readline().split())
+direction = {'N': 0, 'E': 1, 'S': 2, 'W': 3}
+dy = [-1, 0, 1, 0]
+dx = [0, 1, 0, -1]
 
-field = [[0] * (a + 1) for _ in range(b+1)]
-robots = [0]
+field = [[0] * a for _ in range(b)]
+robots = defaultdict(list)
 
-for robot in range(n):
-    x, y, dire = sys.stdin.readline().split()
-    c, r, dire = int(x), b + 1 - int(y), check_dire(dire)
-    field[r][c] = robot + 1
-    robots.append((r, c, dire))
+for robot_idx in range(1, n+1):
+    x_str, y_str, dire = sys.stdin.readline().split()
+    x, y, d = int(x_str) - 1, (b - int(y_str)), direction[dire]
+
+    field[y][x] = robot_idx
+    robots[robot_idx] = [x, y, d]
 
 for _ in range(m):
     ans = perform_order(*sys.stdin.readline().split())
-    print(ans)
 
     if ans:
         print(ans)
