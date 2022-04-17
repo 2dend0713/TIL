@@ -51,6 +51,4 @@ $ git commit -m 'baek: "1240 노드사이의 거리"'
 
 <br>
 
-<br>
-
 *End*
