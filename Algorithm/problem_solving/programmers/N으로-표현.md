@@ -4,52 +4,30 @@
 
 #### 001. 첫 번째 풀이
 
-> 기본 문자를 제외한 나머지 문자 중 가르칠 문자들을 DFS로 선별하고, 각 케이스에 대하여 이해 가능한 단어 수를 카운팅함
+> 개수를 늘려가면서 수를 만들어 가는 방식을 정리하면, 크게 1) 그냥 이어 붙이기, 2) 사칙연산으로 나눌 수 있다. 이때, 사칙연산의 경우, 앞서 만들어 놓은 수들을 활용한다는 점에 착안하여 각 연산 케이스를 4중 for문을 활용해서 구현하였다...
 
 <br>
 
 ```python
-import sys
+def solution(N, number):
+    nums = [set() for _ in range(8)]
+    for idx, num_set in enumerate(nums):
+        num_set.add(int(str(N) * (idx + 1)))
 
+    for cnt in range(1, 8):
+        for case in range(cnt):
+            for num_first in nums[case]:
+                for num_second in nums[cnt-case-1]:
+                    nums[cnt].add(num_first + num_second)
+                    nums[cnt].add(num_first - num_second)
+                    nums[cnt].add(num_first * num_second)
+                    if num_second:
+                        nums[cnt].add(num_first / num_second)
 
-def pick_chars(idx=0, step=0):
-    global ans
-
-    if step == k - 5:
-        cnt = 0
-        for word in words:
-            flag = 1
-            for char in word:
-                if not chars[ord(char)-97]:
-                    flag = 0
-            if flag:
-                cnt += 1
-        ans = max(ans, cnt)
-        return
-
-    for c in range(idx, 26):
-        if not chars[c]:
-            chars[c] = 1
-            pick_chars(c, step+1)
-            chars[c] = 0
-
-
-n, k = map(int, sys.stdin.readline().split())
-words = []
-for _ in range(n):
-    words.append(set(sys.stdin.readline().rstrip()))
-
-default_chars = ['a', 'c', 'i', 'n', 't']
-chars = [0] * 26
-for char in default_chars:
-    chars[ord(char)-97] = 1
-
-ans = 0
-if k < 5:
-    print(0)
-elif k == 26:
-    print(n)
-else:
-    pick_chars()
-    print(ans)
+    for idx, num_set in enumerate(nums):
+        if number in num_set:
+            return idx + 1
+    else:
+        return -1
 ```
+
