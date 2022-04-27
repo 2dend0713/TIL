@@ -2,8 +2,8 @@ import sys
 from collections import deque
 
 
-def check_validation(node):
-    return 0 <= node < 100001
+def check_validation(node, visited):
+    return 0 <= node < 100001 and not visited[node]
 
 
 def find_target(start, target):
@@ -17,13 +17,13 @@ def find_target(start, target):
             return time
 
         left, right, jump = start - 1, start + 1, start * 2
-        if check_validation(jump) and not visited[jump]:
+        if check_validation(jump, visited):
             visited[jump] = True
             q.appendleft((jump, time))
-        if check_validation(left) and not visited[left]:
+        if check_validation(left, visited):
             visited[left] = True
             q.append((left, time+1))
-        if check_validation(right) and not visited[right]:
+        if check_validation(right, visited):
             visited[right] = True
             q.append((right, time+1))
 
