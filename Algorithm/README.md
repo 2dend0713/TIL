@@ -16,8 +16,6 @@
 
 <br />
 
-1. Concepts
-
 1. Codes
    1. Baekjoon
       1. Only-Code
@@ -27,6 +25,7 @@
 
    1. SWEA
       1. Only-Code
+1. Concepts
 
 
 <br />
