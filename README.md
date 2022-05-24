@@ -44,7 +44,7 @@
 ```bash
 # example
 
-$ git commit -m 'Docs: "TIL Repository, READMD.md 내용 수정, 그라운드 룰 및 커밋 컨벤션 내용 수정"'
+$ git commit -m 'Docs: "TIL Repository, READMD.md, 그라운드 룰 및 커밋 컨벤션 내용 수정"'
 ```
 
 <br />
