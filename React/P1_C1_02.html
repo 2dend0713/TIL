@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- root element -->
+    <div id="root"></div>
+
+    <!-- React 및 ReactDOM CDN Link -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <script>
+      // root element 선택
+      const root = document.getElementById("root");
+      const rootElement = ReactDOM.createRoot(root);
+
+      // const elementV = document.createElement("h1");
+      // elementV.textContent = "Hello, World!";
+      // createElement("h1", null, "Hello, World!")
+      const element = React.createElement("h1", { children: "Hello, World!" });
+
+      // rootElement.appendChild(element);
+      rootElement.render(element);
+    </script>
+  </body>
+</html>
