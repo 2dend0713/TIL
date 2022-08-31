@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- root element -->
+    <div id="root"></div>
+
+    <!-- React 및 ReactDOM, Babel CDN Link -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      const rootElement = ReactDOM.createRoot(root);
+
+      // props 인자보다 children 인자의 우선순위가 높음
+      // children 인자로 배열(값의 집합)을 넘겨줄 수 있음(연속해서 출력됨)
+      // const element = React.createElement("h1", {
+      //   className: "title",
+      //   children: ["Hello, World!", " ", "I'm James :)"]
+      // });
+
+      // JSX
+      // <h1 className="title">Hello, World by JSX</h1>
+      // <h1 className={myClassName}>{text}</h1>
+      // <h1 className={myClassName} children={text} />
+      const myClassName = "title";
+      const text = "Hello, World by JSX";
+      const props = {
+        className: myClassName,
+        children: text
+      };
+      // spread 연산: {...props} => className={props.className} children={props.children}
+      const element = (
+        <h1 {...props} />
+      );
+
+      rootElement.render(element);
+    </script>
+  </body>
+</html>

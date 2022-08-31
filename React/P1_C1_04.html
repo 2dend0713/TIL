@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- root element -->
+    <div id="root"></div>
+
+    <!-- React 및 ReactDOM, Babel CDN Link -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      const rootElement = ReactDOM.createRoot(root);
+
+      // root 태그 안에 div 태그 존재
+      // <div
+      //   children={[
+      //     React.createElement("h1", null, "hi"),
+      //     React.createElement("h3", null, "bye"),
+      //     React.createElement("h5", null, "I'm James :)")
+      //   ]}
+      // />
+
+      // root 태그 안에 바로 h 태그 존재
+      // <React.Fragment></React.Fragment> => <></>
+      const element = (
+        // <React.Fragment
+        //   children={[
+        //     <h1>hi</h1>,
+        //     <h3>bye</h3>,
+        //     <h5>I'm James :)</h5>
+        //   ]}
+        // />
+
+        <>
+          <h1>hi</h1>
+          <h3>bye</h3>
+          <h5>I'm James :)</h5>
+        </>
+      );
+
+      // HTML 영역에 태그를 작성해 놓아도 React가 랜더링 하면서 덮어 씀
+      rootElement.render(element);
+    </script>
+  </body>
+</html>
