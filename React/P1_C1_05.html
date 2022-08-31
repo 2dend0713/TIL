@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- root element -->
+    <div id="root"></div>
+
+    <!-- React 및 ReactDOM, Babel CDN Link -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      const rootElement = ReactDOM.createRoot(root);
+
+      // 함수
+      // const pressElement = (title, description) => (
+      //   <>
+      //     <h1>{title}</h1>
+      //     <h5>{description}</h5>
+      //   </>
+      // );
+      
+      // 기존 HTML 태그와 구별할 수 있도록 Custom Element는 대문자로 시작
+      const Pressed = ({ title, description, children }) => (
+        <>
+          <h1>{title}</h1>
+          <h5>{description}</h5>
+          <div className="outer-box">
+            <div>
+              {children}
+            </div>
+          </div>
+        </>
+      );
+
+      // const elements = (
+      //   <>
+      //     {pressElement("name", "Sanghyun Park")}
+      //     {pressElement("age", "28")}
+      //     {pressElement("phone", "010-6655-3446")}
+      //   </>
+      // );
+      const elements = (
+        <>
+          <Pressed title="name" description="Sanghyun Park">
+            or James
+          </Pressed>
+          <Pressed title="age" description="28" children="maybe old.. :(" />
+          <Pressed title="phone" description="010-6655-3446" />
+        </>
+      );
+
+      rootElement.render(elements);
+    </script>
+  </body>
+</html>

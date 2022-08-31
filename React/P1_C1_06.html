@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- root element -->
+    <div id="root"></div>
+
+    <!-- React 및 ReactDOM, Babel CDN Link -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      const rootElement = ReactDOM.createRoot(root);
+
+      // custom element
+      const Pressed = ({ text }) => {
+        // text가 대문자로 시작한다면 크게, 그렇지 않다면 작게
+        if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+          return <h1>{text}</h1>;
+        } else {
+          return <h5>{text}</h5>;
+        }
+      };
+
+      const Number = ({ number, cond }) => {
+        // number가 조건에 해당하면 크게, 그렇지 않다면 작게
+        return cond ? <h1>{number}</h1> : <h5>{number}</h5>;
+      };
+
+      // 생성
+      const elementText = (
+        <>
+          <Pressed text="James" />
+          <Pressed text="james" />
+        </>
+      );
+
+      const elementNumber = (
+        <>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
+            <Number number={number} cond={number % 3 === 0} />
+          ))}
+        </>
+      );
+
+      const result = (
+        <>
+          {elementText}
+          {elementNumber}
+        </>
+      );
+
+      rootElement.render(result);
+    </script>
+  </body>
+</html>
